@@ -2,22 +2,22 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\Frontend\FrontendController;
 use App\Http\Controllers\API\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-//===============Register Login ====================
+//========================Register Login ====================
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
-//=============== Logout====================
+//======================= Logout====================
 Route::middleware(['auth:sanctum'])->group(function() {
     Route::post('logout', [AuthController::class, 'logout']);
 });
 
 
-
-//======================Admin==============================
+//===========================Admin==============================
 Route::middleware(['auth:sanctum', 'isApiAdmin'])->group(function() {
     //protected
     Route::get('/checkingAuthenticated', function() {
@@ -39,9 +39,10 @@ Route::middleware(['auth:sanctum', 'isApiAdmin'])->group(function() {
     Route::delete('delete-product/{id}', [ProductController::class, 'destroy']);
 });
 
-
-
-
+//=============================Frontend==============================
+Route::get('get-category', [FrontendController::class, 'category']);//show
+Route::get('fetchproduct/{product_slug}', [FrontendController::class, 'product']);//show
+Route::get('view-productdeatils/{category_slug}/{product_slug}', [FrontendController::class, 'productDetails']);
 
 
 
