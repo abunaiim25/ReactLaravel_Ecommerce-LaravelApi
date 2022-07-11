@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\Frontend\CartController;
 use App\Http\Controllers\API\Frontend\FrontendController;
 use App\Http\Controllers\API\ProductController;
 use Illuminate\Http\Request;
@@ -43,7 +44,7 @@ Route::middleware(['auth:sanctum', 'isApiAdmin'])->group(function() {
 Route::get('get-category', [FrontendController::class, 'category']);//show
 Route::get('fetchproduct/{product_slug}', [FrontendController::class, 'product']);//show
 Route::get('view-productdeatils/{category_slug}/{product_slug}', [FrontendController::class, 'productDetails']);
-
+Route::post('add-to-cart', [CartController::class, 'addToCart']);
 
 
 /*
