@@ -13,7 +13,13 @@ class Cart extends Model
         'user_id',
         'product_id',
         'product_qty',
-      
     ];
+
+
+    protected $with = ['product'];
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id'); //joined 
+    }
 }
 
