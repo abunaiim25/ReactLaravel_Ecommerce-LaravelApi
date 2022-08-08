@@ -7,6 +7,7 @@ use App\Http\Controllers\API\Frontend\CheckoutController;
 use App\Http\Controllers\API\Frontend\FrontendController;
 use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\API\ProductController;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 //========================Register Login ====================
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
+Route::post('forget-password', [AuthController::class, 'forget_password']);
+Route::post('reset-password', [AuthController::class, 'reset_password']);
 //======================= Logout====================
 Route::middleware(['auth:sanctum'])->group(function() {
     Route::post('logout', [AuthController::class, 'logout']);
